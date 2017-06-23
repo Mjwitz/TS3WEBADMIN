@@ -1,0 +1,142 @@
+<script>
+    function stopServer() {
+ 
+ 		var ip = document.getElementById("ipAddress");
+		var user = document.getElementById("loginName");
+		var fraze = document.getElementById("passWord");
+		
+		var ipInput = ip.elements[0].value;
+		var userInput = user.elements[0].value;
+		var frazeInput = fraze.elements[0].value;
+		
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "http://" + ipInput + ":10011", true);
+        xhr.onreadystatechange = function() {
+            return true;
+        }
+        xhr.send("login "+ userInput + " " + frazeInput + "\n" + "serverstop sid=1" + "\n");
+ 
+    }
+ 
+    function startServer() {
+ 
+ 		var ip = document.getElementById("ipAddress");
+		var user = document.getElementById("loginName");
+		var fraze = document.getElementById("passWord");
+		
+		var ipInput = ip.elements[0].value;
+		var userInput = user.elements[0].value;
+		var frazeInput = fraze.elements[0].value;
+		
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "http://" + ipInput + ":10011", true);
+        xhr.onreadystatechange = function() {
+            return true;
+        }
+        xhr.send("login "+ userInput + " " + frazeInput + "\n" + "serverstart sid=1" + "\n");
+ 
+    }
+    function giveRank() {
+ 
+ 
+ 		var ip = document.getElementById("ipAddress");
+		var user = document.getElementById("loginName");
+		var fraze = document.getElementById("passWord");
+		
+		var ipInput = ip.elements[0].value;
+		var userInput = user.elements[0].value;
+		var frazeInput = fraze.elements[0].value;
+		
+		var x = document.getElementById("give1");
+		var y = document.getElementById("give2");
+		
+		var sid1= x.elements[0].value;
+		var dbid1= y.elements[0].value;
+		
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "http://" + ipInput + ":10011", true);
+        xhr.onreadystatechange = function() {
+            return true;
+        }
+        xhr.send("login "+ userInput + " " + frazeInput + "\n" + "use 1" + "\n" + "servergroupaddclient sgid=" + sid1 + " cldbid=" + dbid1 + "\n");
+		
+    }
+	
+	    function takeRank() {
+		
+		var ip = document.getElementById("ipAddress");
+		var user = document.getElementById("loginName");
+		var fraze = document.getElementById("passWord");
+		
+		var ipInput = ip.elements[0].value;
+		var userInput = user.elements[0].value;
+		var frazeInput = fraze.elements[0].value;
+		
+		var x1 = document.getElementById("take1");
+		var y1 = document.getElementById("take2");
+		
+		var sid2= x1.elements[0].value;
+		var dbid2= y1.elements[0].value;
+		
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "http://" + ipInput + ":10011", true);
+        xhr.onreadystatechange = function() {
+            return true;
+        }
+        xhr.send("login "+ userInput + " " + frazeInput + "\n" + "use 1" + "\n" + "servergroupdelclient sgid=" + sid2 + " cldbid=" + dbid2 + "\n");
+		
+    }
+</script>
+<style>
+ table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+	background-color: #f1f1c1;
+	width: 100%;
+}
+ </style>
+ <table>
+	<tr>
+		<th>
+			IP address <form id="ipAddress"><input type="text" name="address" value=""></form>
+		</th>
+		<th>
+			Username <form id="loginName"><input type="text" name="login" value=""></form>
+		</th>
+		<th>
+			Password <form id="passWord"><input type="text" name="pass" value=""></form>
+		</th>
+	</tr>
+	<tr>
+		<th>
+			This will stop the server! 
+		</th>
+		<th>
+			<button type="button" onclick="stopServer()">Stop Server</button>
+		</th>
+	</tr>
+	<tr>
+		<th>
+		This will start the server!
+		</th>
+		<th>
+			<button type="button" onclick="startServer()">Start Server</button>
+		</th>
+	</tr>
+	<tr>
+		<th>
+		Add user to a rank! Server Group number <form id="give1"><input type="text" name="sid" value=""></form> Client Data Bace ID <form id=give2><input type="text" name="dbid" value=""></form>
+		</th>
+		<th>
+			<button type="button" onclick="giveRank()">Give Rank</button>
+		</th>
+	</tr>
+	<tr>
+		<th>
+		Remove user from a rank! Server Group number <form id="take1"><input type="text" name="sid2" value=""></form> Client Data Bace ID <form id=take2><input type="text" name="dbid2" value=""></form>
+		</th>
+		<th>
+			<button type="button" onclick="takeRank()">Take Rank</button>
+		</th>
+	</tr>
+</table>
